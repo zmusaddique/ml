@@ -45,7 +45,7 @@ class LogisticRegression:
         sig = 1 / (1 + e ** (-z))
         return sig
 
-    def fit(self, X, y, alpha=0.001, iter=10000):
+    def fit(self, X, y, alpha=0.001, iter=1000):
         params, X = self.initialize(X)
 
         def cost(theta): # uses the log-loss: [y(log(y) + (1-y)log(1-y)]
@@ -65,6 +65,9 @@ class LogisticRegression:
 
             cost_list[i] = cost(params)
         self.params = params
+
+        plt.plot(cost_list)
+        plt.show()
         return cost_list
 
     def predict(self, X):
